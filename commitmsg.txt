@@ -1,0 +1,32 @@
+## Commit 2 — QR code generation and history view
+
+**Subject:**
+```
+Implement QR code generation (Behaviour 2) and history view (Behaviour 3) with SQLite persistence
+```
+
+**Body:**
+```
+Added the /generate POST route, which accepts a URL and label from an authenticated
+user, generates a QR code using the qrcode library with Pillow as the image backend,
+inserts a record into the qr_codes SQLite table (id, label, url, created_at), and
+redirects to the new QR code's detail page; the index route (GET /) now queries all
+rows ordered by creation date descending and renders them in the history table.
+
+These two behaviours are the core value of the tool — without generation and history,
+nothing else is useful — and they share the same database write/read cycle, making them
+natural to implement together.
+
+SQLite with WAL journal mode was chosen for persistence, as specified; the DB_PATH
+environment variable allows the file to be placed on a Railway persistent volume without
+code changes. The qrcode library generates a PIL image object which is serialised to a
+BytesIO buffer and served directly for the inline preview on the detail page, avoiding
+any filesystem writes for the image data itself.
+
+Concern: qrcode's default error correction level (M) is used; if QR codes are to be
+printed at very small sizes, level H might be preferable, but the spec does not specify
+a size or use-case constraint so the default is retained.
+
+No deviations from the specification. URL validity checking is explicitly out of scope
+per the spec brief and has not been implemented.
+``
