@@ -5,12 +5,14 @@
 
 ## How to Use This Document
 
-This document is the opening brief for the coaching AI task for the Local Loop experiment week. Read it in full before taking any other action. Then follow the **Onboarding Protocol** below — do not skip it.
+**Step 1 — Read this document in full.** Do not take any other action until you have read it completely. Do not read the repository documents yet.
 
-**Before starting:** read the following documents from the repository in this order:
+**Step 2 — Read the following documents from the repository, in this order:**
 1. `/planning/01_working_brief.md` — the single working brief
 2. `/planning/02_vsm_map.md` — the confirmed VSM map
-3. `/method/03_working_method_protocol.md` — the working method protocol (v2)
+3. `/method/03_working_method_protocol_v2.md` — the working method protocol (v2)
+
+**Step 3 — Follow the Onboarding Protocol** (see below). Do not skip it. Do not propose a session charter or take any other action until the Onboarding Protocol is complete.
 
 ---
 
