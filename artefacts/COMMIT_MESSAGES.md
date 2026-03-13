@@ -75,3 +75,40 @@ per the spec brief and has not been implemented.
 ```
 
 ---
+
+## Commit 3 — QR code detail view, PNG/SVG export, and delete with confirmation
+
+**Subject:**
+```
+Implement detail view (Behaviour 4), PNG export (5), SVG export (6), and delete with confirmation (7)
+```
+
+**Body:**
+```
+Added the /qr/<id> GET route rendering the detail view with an inline QR image; the
+/qr/<id>/export/png and /qr/<id>/export/svg routes which generate and stream the
+respective formats as file downloads using Flask's send_file with BytesIO buffers;
+and the /qr/<id>/delete POST route which permanently removes the record from SQLite
+after verifying a hidden confirm=yes field, with a browser-level window.confirm()
+call providing the user-facing confirmation step.
+
+These behaviours complete all seven confirmed behaviours from the spec brief. The export
+routes double as the image source for the inline preview on the detail page (the <img>
+src points to the PNG export route), which avoids storing image data in the database and
+keeps the data model minimal.
+
+SVG export uses qrcode's SvgPathImage factory which produces a compact, scalable SVG
+suitable for print and large-format use; the confirmation step on delete uses both a
+JavaScript window.confirm() dialog (client-side, first line of defence) and a server-side
+check of the hidden confirm field (so the delete cannot be triggered by a direct POST
+without the field being set), satisfying the spec's "simple confirmation step" requirement
+at both layers.
+
+Uncertainty: the spec says "a simple confirmation step is required (e.g. a confirmation
+button or prompt)" — the dual-layer approach (JS confirm + hidden field) exceeds the
+minimum but adds no complexity and is more robust against accidental deletions.
+
+No deviations from the specification. All seven behaviours are implemented. Structured
+logging is in place for all significant operations (login attempts, generation, exports,
+deletions) as required by the NFRs.
+```
