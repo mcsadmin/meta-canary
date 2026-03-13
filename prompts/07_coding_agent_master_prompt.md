@@ -44,7 +44,7 @@ The code should be well-factored and modular — clean separation of concerns, c
 
 ### Graph Database Decision
 
-The graph database architecture (relational only, hybrid relational/graph, or pure graph) will be confirmed with Paul and Yanny before the main build begins. Do not make this decision unilaterally. If you are asked to implement a data model before this decision is confirmed, flag it.
+The graph database architecture (relational only, hybrid relational/graph, or pure graph) will be confirmed with the team before the main build begins. Do not make this decision unilaterally. If you are asked to implement a data model before this decision is confirmed, flag it.
 
 ### Non-Functional Requirements (NFRs)
 
