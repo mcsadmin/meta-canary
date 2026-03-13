@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}{{ qr['label'] }}{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <a href="{{ url_for('index') }}" class="back-link">&larr; Back to all QR codes</a>
+  <h1 class="page-title">{{ qr['label'] }}</h1>
+  <p class="url-display">
+    <a href="{{ qr['url'] }}" target="_blank" rel="noopener noreferrer">{{ qr['url'] }}</a>
+  </p>
+  <p class="date-display">Created: {{ qr['created_at'][:10] }}</p>
+</div>
+
+<!-- QR code image rendered inline via the /export/png route -->
+<div class="qr-display card">
+  <img
+    src="{{ url_for('export_png', qr_id=qr['id']) }}"
+    alt="QR code for {{ qr['label'] }}"
+    class="qr-image"
+    width="280"
+    height="280"
+  />
+</div>
+
+<!-- Behaviours 5 & 6: Export buttons -->
+<div class="action-group">
+  <a href="{{ url_for('export_png', qr_id=qr['id']) }}" class="btn btn-primary">
+    Download PNG
+  </a>
+  <a href="{{ url_for('export_svg', qr_id=qr['id']) }}" class="btn btn-secondary">
+    Download SVG
+  </a>
+</div>
+
+<!-- Behaviour 7: Delete with confirmation -->
+<section class="delete-section card card-danger">
+  <h2 class="card-title card-title-danger">Delete this QR code</h2>
+  <p class="delete-warning">
+    This will permanently remove the QR code from the database. This action cannot be undone.
+  </p>
+  <form
+    method="post"
+    action="{{ url_for('delete_qr', qr_id=qr['id']) }}"
+    class="delete-form"
+    onsubmit="return confirm('Are you sure you want to permanently delete this QR code?');"
+  >
+    <input type="hidden" name="confirm" value="yes" />
+    <button type="submit" class="btn btn-danger">Delete permanently</button>
+  </form>
+</section>
+{% endblock %}

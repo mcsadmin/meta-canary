@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}QR Codes{% endblock %}
+
+{% block content %}
+<section class="page-header">
+  <h1 class="page-title">QR Code Generator</h1>
+  <p class="page-subtitle">Generate and manage QR codes for the team</p>
+</section>
+
+<!-- Behaviour 2: Generate form -->
+<section class="card generate-card">
+  <h2 class="card-title">Generate a new QR code</h2>
+  <form method="post" action="{{ url_for('generate') }}" class="generate-form">
+    <div class="form-group">
+      <label for="url" class="form-label">URL to encode</label>
+      <input
+        type="url"
+        id="url"
+        name="url"
+        class="form-input"
+        placeholder="https://example.com"
+        required
+        autofocus
+      />
+    </div>
+    <div class="form-group">
+      <label for="label" class="form-label">Label</label>
+      <input
+        type="text"
+        id="label"
+        name="label"
+        class="form-input"
+        placeholder="e.g. Local Loop homepage"
+        required
+      />
+    </div>
+    <button type="submit" class="btn btn-primary">Generate QR code</button>
+  </form>
+</section>
+
+<!-- Behaviour 3: History -->
+<section class="history-section">
+  <h2 class="section-title">History</h2>
+  {% if qr_codes %}
+    <table class="history-table" aria-label="QR code history">
+      <thead>
+        <tr>
+          <th scope="col">Label</th>
+          <th scope="col">URL</th>
+          <th scope="col">Created</th>
+          <th scope="col" class="col-action"><span class="sr-only">Actions</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for qr in qr_codes %}
+        <tr>
+          <td>{{ qr['label'] }}</td>
+          <td class="url-cell">
+            <a href="{{ qr['url'] }}" target="_blank" rel="noopener noreferrer">{{ qr['url'] }}</a>
+          </td>
+          <td class="date-cell">{{ qr['created_at'][:10] }}</td>
+          <td>
+            <a href="{{ url_for('view_qr', qr_id=qr['id']) }}" class="btn btn-secondary btn-sm">View</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p class="empty-state">No QR codes yet. Generate your first one above.</p>
+  {% endif %}
+</section>
+{% endblock %}

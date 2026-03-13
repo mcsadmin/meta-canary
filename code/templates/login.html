@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Log in{% endblock %}
+
+{% block content %}
+<div class="auth-card">
+  <h1 class="auth-title">Local Loop QR Generator</h1>
+  <p class="auth-subtitle">Internal tool — team access only</p>
+
+  <form method="post" action="{{ url_for('login') }}" class="auth-form">
+    <label for="password" class="form-label">Password</label>
+    <input
+      type="password"
+      id="password"
+      name="password"
+      class="form-input"
+      autocomplete="current-password"
+      autofocus
+      required
+    />
+    <button type="submit" class="btn btn-primary btn-full">Log in</button>
+  </form>
+</div>
+{% endblock %}
