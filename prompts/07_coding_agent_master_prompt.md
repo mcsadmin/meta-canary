@@ -111,6 +111,14 @@ Commit **often** — at least at the end of every meaningful unit of work, and w
 
 ---
 
+## Direct Commit Requirement
+
+You must be able to make **direct commits to the repository**. This is a hard requirement — the coaching agent reads the commit log as its primary signal of what is happening in the build, and this only works if commits land in the repository in real time.
+
+Before starting any coding session, confirm that your tool can push directly to GitHub. If it cannot (e.g., due to platform policy), flag this to Tom and Dil before starting. Do not begin a coding session without resolving this. If a workaround is agreed, document the deviation clearly in every commit message body.
+
+---
+
 ## What to Do When Stuck
 
 If you are stuck — the code is not working, the specification is ambiguous, or you are uncertain about an architectural decision — **stop and flag it**. Do not spend more than the allocated T-shirt time (20/45/90 minutes) without producing a working artefact. Write a commit with a message body explaining what you tried and why it did not work, then flag the issue to Tom or Dil.

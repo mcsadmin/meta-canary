@@ -7,11 +7,15 @@
 
 At the end of each warm conversation, before handing off to the cold AI processing step, Tom and Dil produce a handoff note. The handoff note is the primary input to the coaching agent's synthesis — it is the human-curated signal that tells the agent what matters from the conversation.
 
-**Step 1:** Tom and Dil agree and write three to five bullet points covering what was decided, what was parked, and what the next session needs to address. This takes no more than five minutes. Keep conversations short enough that key points are not forgotten.
+**Hard rule:** The coaching agent never writes the content of a handoff note. The bullet points must come from Tom and Dil. The coaching agent's job is to prompt for them, then structure and commit what is provided.
 
-**Step 2:** Paste the bullet points to the coaching agent along with the prompt below.
+**Step 1:** The coaching agent asks: *"Please give me three to five bullet points covering what was decided, what was parked, and what the next session needs to address."*
 
-**Step 3:** The coaching agent structures the note, identifies implications, and writes it to the `/log` bucket.
+**Step 2:** Tom and Dil provide the bullet points. This takes no more than five minutes. Keep conversations short enough that key points are not forgotten.
+
+**Step 3:** Paste the bullet points to the coaching agent along with the prompt below.
+
+**Step 4:** The coaching agent structures the note, identifies implications, and writes it to the `/log` bucket.
 
 This prompt is stored in `/prompts/06_handoff_note_prompt.md`. It will be revised during the meta-canary if needed.
 
