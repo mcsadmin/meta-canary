@@ -74,3 +74,7 @@
 * [Prompts](prompts/README.md)
 * [Specs](specs/README.md)
 * [Tickets](tickets/README.md)
+
+## Meta-Canary Findings
+
+* [SUMMARY.md Discipline — Briefing Note](artefacts/summary_md_briefing.md)
